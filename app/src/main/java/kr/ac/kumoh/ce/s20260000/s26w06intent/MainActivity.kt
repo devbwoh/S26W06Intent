@@ -38,44 +38,44 @@ fun MainScreen() {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            IntentYouTube()
-            IntentHomepage()
+//            IntentYouTube()
+//            IntentHomepage()
+
+            IntentButton(
+                text = "유튜브",
+                link = "https://www.youtube.com/results?search_query=android+developers"
+            )
+
+            IntentButton(
+                text = "인스타그램",
+                link = "https://www.instagram.com/blackpinkofficial/"
+            )
+
+            IntentButton(
+                text = "페이스북",
+                link = "https://www.facebook.com/bangtan.official"
+            )
         }
     }
 }
 
 @Composable
-fun IntentYouTube(modifier: Modifier = Modifier) {
+fun IntentButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    link: String,
+) {
     val context = LocalContext.current
 
     Button(
         modifier = modifier
             .fillMaxWidth(),
         onClick = {
-            val uri = "https://www.youtube.com/results?search_query=android+developers".toUri()
+            val uri = link.toUri()
             val intent = Intent(Intent.ACTION_VIEW, uri)
             context.startActivity(intent)
         }
     ) {
-        Text("유튜브")
-    }
-}
-
-@Composable
-fun IntentHomepage(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-
-    Button(
-        modifier = modifier
-            .fillMaxWidth(),
-        onClick = {
-//            val uri = "https://www.facebook.com/[본인 계정]".toUri()
-            val uri = "https://www.facebook.com/bangtan.official".toUri()
-//            val uri = "https://bwoh.github.io".toUri()
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            context.startActivity(intent)
-        }
-    ) {
-        Text("홈 페이지")
+        Text(text)
     }
 }
