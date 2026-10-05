@@ -32,46 +32,25 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
+    val intentItems: List<Pair<String, String>> = listOf(
+        "유튜브" to "https://www.youtube.com/results?search_query=android+developers",
+        "인스타그램" to "https://www.instagram.com/blackpinkofficial/",
+        "페이스북" to "https://www.facebook.com/bangtan.official",
+        "우리집 좌표" to "geo:36.145014,128.393047?z=17",
+        "우리집 주소" to "geo:0,0?q=국립금오공과대학교",
+        "전화" to "tel:054-478-7114",
+        "문자" to "sms:054-478-7114"
+    )
+
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            IntentButton(
-                text = "유튜브",
-                link = "https://www.youtube.com/results?search_query=android+developers"
-            )
-
-            IntentButton(
-                text = "인스타그램",
-                link = "https://www.instagram.com/blackpinkofficial/"
-            )
-
-            IntentButton(
-                text = "페이스북",
-                link = "https://www.facebook.com/bangtan.official"
-            )
-
-            IntentButton(
-                text = "우리집 좌표",
-                link = "geo:36.145014,128.393047?z=17"
-            )
-
-            IntentButton(
-                text = "우리집 주소",
-                link = "geo:0,0?q=국립금오공과대학교"
-            )
-
-            IntentButton(
-                text = "전화",
-                link = "tel:054-478-7114"
-            )
-
-            IntentButton(
-                text = "문자",
-                link = "sms:054-478-7114"
-            )
+            intentItems.forEach { item ->
+                IntentButton(item = item)
+            }
         }
     }
 }
@@ -79,10 +58,10 @@ fun MainScreen() {
 @Composable
 fun IntentButton(
     modifier: Modifier = Modifier,
-    text: String,
-    link: String,
+    item: Pair<String, String>,
 ) {
     val context = LocalContext.current
+    val (text, link) = item
 
     Button(
         modifier = modifier
